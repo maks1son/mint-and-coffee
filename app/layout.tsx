@@ -1,24 +1,29 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Bree_Serif, Manrope, Oswald } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+const bree = Bree_Serif({
+  variable: "--font-bree",
+  subsets: ["latin"],
+  weight: "400",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin", "cyrillic"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Mint & Coffee — место, где время замедляется",
+  title: "Mint & Coffee - кофейня с мятным акцентом",
   description:
-    "Уютная кофейня с авторскими напитками. Приходите за кофе, остаётесь за атмосферой.",
+    "Авторский кофе с мятой, айс-кофе, латте и напитки с собой. Светлый кофейный лендинг Mint & Coffee.",
 };
 
 export default function RootLayout({
@@ -27,11 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ru"
-      className={`${cormorant.variable} ${dmSans.variable}`}
-    >
-      <body className="min-h-screen">{children}</body>
+    <html lang="ru" className={`${bree.variable} ${manrope.variable} ${oswald.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
