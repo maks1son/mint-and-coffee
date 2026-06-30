@@ -52,6 +52,7 @@ const menuItems = [
     desc: "Холодный кофе, свежая мята, мягкая сладость.",
     price: "390 ₽",
     tone: "bg-[#0d6f67] text-[#fbf2d8]",
+    image: "/generated/menu/mint-iced-coffee.png",
   },
   {
     label: "Новинка",
@@ -59,6 +60,7 @@ const menuItems = [
     desc: "Нежный латте с мятным сиропом и овсяным молоком.",
     price: "350 ₽",
     tone: "bg-[#fbf2d8] text-[#1c2d2f]",
+    image: "/generated/menu/mint-latte.png",
   },
   {
     label: "Классика",
@@ -66,6 +68,7 @@ const menuItems = [
     desc: "Плотный вкус, стойкая крема, короткий финал.",
     price: "220 ₽",
     tone: "bg-[#7a452d] text-[#fff0d4]",
+    image: "/generated/menu/espresso.png",
   },
   {
     label: "Холодный",
@@ -73,6 +76,7 @@ const menuItems = [
     desc: "Медленная экстракция, мятный послевкусие.",
     price: "390 ₽",
     tone: "bg-[#f5bc35] text-[#19282a]",
+    image: "/generated/menu/cold-brew.png",
   },
   {
     label: "Без кофеина",
@@ -80,6 +84,7 @@ const menuItems = [
     desc: "Спокойный вкус для вечера и долгих разговоров.",
     price: "340 ₽",
     tone: "bg-[#276f78] text-[#f7ead2]",
+    image: "/generated/menu/decaf-latte.png",
   },
   {
     label: "Для дома",
@@ -87,6 +92,7 @@ const menuItems = [
     desc: "Мятный сироп для домашнего кофе и десертов.",
     price: "650 ₽",
     tone: "bg-[#efe2c5] text-[#1c2d2f]",
+    image: "/generated/menu/mint-syrup.png",
   },
 ];
 
@@ -286,15 +292,24 @@ export default function Home() {
 
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {menuItems.map((item) => (
-                <article key={item.name} className={`menu-card ${item.tone}`}>
+                <article key={item.name} className={`menu-card group ${item.tone}`}>
                   <div className="flex items-start justify-between gap-4">
                     <p className="text-xs font-extrabold opacity-72">{item.label}</p>
                     <Star size={20} strokeWidth={1.5} />
                   </div>
-                  <div className="mt-auto">
-                    <h3 className="mt-16 text-3xl font-black leading-[1.05]">{item.name}</h3>
+                  <div className="menu-card-image relative mt-5 aspect-[1.08] overflow-hidden rounded-[18px]">
+                    <Image
+                      src={asset(item.image)}
+                      alt={`${item.name} product photo`}
+                      fill
+                      sizes="(min-width: 1280px) 22vw, (min-width: 640px) 44vw, 92vw"
+                      className="object-cover transition duration-300 group-hover:scale-[1.04]"
+                    />
+                  </div>
+                  <div className="mt-5 flex flex-1 flex-col">
+                    <h3 className="text-3xl font-black leading-[1.05]">{item.name}</h3>
                     <p className="mt-4 text-sm leading-6 opacity-78">{item.desc}</p>
-                    <p className="mt-8 text-2xl font-extrabold">{item.price}</p>
+                    <p className="mt-auto pt-7 text-2xl font-extrabold">{item.price}</p>
                   </div>
                 </article>
               ))}
